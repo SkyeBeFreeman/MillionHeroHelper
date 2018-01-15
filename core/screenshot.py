@@ -5,6 +5,7 @@ import win32gui
 import win32con
 from win32com import client
 from PIL import Image, ImageGrab
+from time import strftime
 
 class RECT(ctypes.Structure):
     _fields_ = [('left', ctypes.c_long), 
@@ -16,23 +17,18 @@ class RECT(ctypes.Structure):
 
 
 def process_image(directory='screenshots', filename='screenshot.png'):
+    print(strftime("%Y-%m-%d %H:%M:%S") + " 开始处理图片", flush=True)
     img = Image.open(os.path.join(directory, filename))
 
     # 问题
-    img_question = img.crop((50, 300, 1000, 500))
+    img_question = img.crop((50, 200, 1000, 400))
     img_question.save(os.path.join(directory, 'screenshot_question.png'))
 
-    # 选项A
-    img_a = img.crop((100, 500, 800, 600))
-    img_a.save(os.path.join(directory, 'screenshot_a.png'))    
+    # 选项们
+    img_choices = img.crop((100, 500, 800, 900))
+    img_choices.save(os.path.join(directory, 'screenshot_choices.png'))
 
-    # 选项B
-    img_b = img.crop((100, 650, 800, 750))
-    img_b.save(os.path.join(directory, 'screenshot_b.png'))
-
-    # 选项C
-    img_c = img.crop((100, 800, 800, 900))
-    img_c.save(os.path.join(directory, 'screenshot_c.png'))   
+    print(strftime("%Y-%m-%d %H:%M:%S") + " 处理图片结束", flush=True)
 
 
 def capture_screen(directory='screenshots', filename='screenshot.png'):

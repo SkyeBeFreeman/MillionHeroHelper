@@ -1,7 +1,6 @@
 import unittest
 import os
 from PIL import Image
-# from core.screenshot import capture_screen
 from context import core
 from core.orc import orc
 

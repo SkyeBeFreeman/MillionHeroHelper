@@ -1,61 +1,47 @@
 import os
 from PIL import Image
 from aip import AipOcr
+from time import strftime
 
 class orc(object):
     
     def __init__(self, app_id, api_key, secret_key):
         self.__client = AipOcr(appId=app_id, apiKey=api_key, secretKey=secret_key)
-        self.__client.setConnectionTimeoutInMillis(5000)
+        self.__client.setConnectionTimeoutInMillis(3000)
     
 
     def get_result(self):
+        print(strftime("%Y-%m-%d %H:%M:%S") + " 开始识别", flush=True)
         options = {}
         options['language_type'] = 'CHN_ENG'
 
+        # 获取问题
         img_question = self.__get_image_content(filename='screenshot_question.png')
         question_dist = self.__client.basicGeneral(img_question, options)
         if 'error_code' in question_dist:
             print(question_dist)
-            return ''
+            return '', ''
         else:
-            question = question_dist['words_result'][0]['words']
+            question = ''
+            for pair in question_dist['words_result']:
+                question = question + pair['words']
             index = question.find('.') + 1
             question = question[index:]
             # print(question)
         
+        # 获取选项
         choices = []
-        img_a = self.__get_image_content(filename='screenshot_a.png')
-        a_dist = self.__client.basicGeneral(img_a, options)
-        if 'error_code' in a_dist:
-            print(a_dist)
-            return ''
+        img_choices = self.__get_image_content(filename='screenshot_choices.png')
+        choices_dist = self.__client.basicGeneral(img_choices, options)        
+        if 'error_code' in choices:
+            print(choices)
+            return '', ''
         else:
-            a = a_dist['words_result'][0]['words']
-            choices.append(a)
-            # print(a)
-
-
-        img_b = self.__get_image_content(filename='screenshot_b.png')
-        b_dist = self.__client.basicGeneral(img_b, options)
-        if 'error_code' in b_dist:
-            print(b_dist)
-            return ''
-        else:
-            b = b_dist['words_result'][0]['words']
-            choices.append(b)
-            # print(b)
-
-        img_c = self.__get_image_content(filename='screenshot_c.png')
-        c_dist = self.__client.basicGeneral(img_c, options)        
-        if 'error_code' in c_dist:
-            print(c_dist)
-            return ''
-        else:
-            c = c_dist['words_result'][0]['words']
-            choices.append(c)
+            for pair in choices_dist['words_result']:
+                choices.append(pair['words'])
             # print(c)
         
+        print(strftime("%Y-%m-%d %H:%M:%S") + " 识别结束", flush=True)
         return question, choices
 
 
