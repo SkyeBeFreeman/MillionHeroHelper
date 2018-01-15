@@ -1,3 +1,5 @@
 ctypes
 win32gui
 Pillow
+baidu-aip
+selenium
