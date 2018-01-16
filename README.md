@@ -9,6 +9,11 @@
 >
 > pip install -r requirements.txt
 
+## 运行
+```python
+python main.py
+```
+
 ## PS
 
 只针对百万英雄适配，其他的没试过，自行修改切图参数应该可以
