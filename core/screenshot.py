@@ -32,14 +32,14 @@ def process_image(directory='screenshots', filename='screenshot.png'):
 
 
 def capture_screen(directory='screenshots', filename='screenshot.png'):
+    print(strftime("%Y-%m-%d %H:%M:%S") + " 开始截取图片", flush=True)
     window = win32gui.FindWindow(None, '夜神模拟器')
     win32gui.ShowWindow(window, win32con.SW_RESTORE)
     shell = client.Dispatch('WScript.Shell')
     shell.SendKeys('%')
+    # 将夜神模拟器移动到窗口最前端
     win32gui.SetForegroundWindow(window)
 
-    # 等待夜神模拟器移动到窗口最前端
-    time.sleep(1)
     rect = RECT()
     ctypes.windll.user32.GetWindowRect(window,ctypes.byref(rect))
 
@@ -51,6 +51,8 @@ def capture_screen(directory='screenshots', filename='screenshot.png'):
     img = img.resize((1080, 1920), Image.ANTIALIAS)
     img.save(os.path.join(directory, filename))
 
+    print(strftime("%Y-%m-%d %H:%M:%S") + " 截取图片结束", flush=True)
+
     # 切分问题和选项
-    process_image() 
+    process_image()
 
