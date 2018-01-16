@@ -23,8 +23,8 @@ def runner():
     for s in choices:
         keywords = keywords + s + ' '
 
-    Thread(question_choices_count(question, choices)).start()
     Thread(choices_count(question, choices)).start()
+    Thread(question_choices_count(question, choices)).start()
     Thread(open_webbrowser(browser, keywords)).start()
 
     print(strftime('%Y-%m-%d %H:%M:%S') + ' 结束答题，用时' + str(clock() - start) + '秒', flush=True)

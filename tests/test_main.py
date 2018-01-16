@@ -25,8 +25,8 @@ def runner():
     for s in choices:
         keywords = keywords + s + ' '
 
-    Thread(question_choices_count(question, choices)).start()
     Thread(choices_count(question, choices)).start()
+    Thread(question_choices_count(question, choices)).start()
     Thread(open_webbrowser(browser, keywords)).start()
 
     cnt = clock() - start
