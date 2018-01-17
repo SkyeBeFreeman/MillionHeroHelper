@@ -20,7 +20,7 @@ class orc(object):
         question_dist = self.__client.basicGeneral(img_question, options)
         if 'error_code' in question_dist:
             print(question_dist)
-            return '', ''
+            return '', []
         else:
             question = ''
             for pair in question_dist['words_result']:
@@ -35,7 +35,7 @@ class orc(object):
         choices_dist = self.__client.basicGeneral(img_choices, options)        
         if 'error_code' in choices:
             print(choices)
-            return '', ''
+            return '', []
         else:
             for pair in choices_dist['words_result']:
                 choices.append(pair['words'])
