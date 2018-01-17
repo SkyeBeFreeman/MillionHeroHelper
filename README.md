@@ -2,7 +2,7 @@
 
 ## 介绍
 
-在Win环境下使用，利用夜神模拟器打开西瓜视频的百万英雄进行游戏，免去手机传输图片的延迟，识别问题和选项并进行搜索结果。
+在Win环境下使用，利用夜神模拟器打开西瓜视频的百万英雄进行游戏，免去手机传输图片的延迟，识别问题和选项并进行搜索结果
 
 ## 显示效果
 
@@ -16,7 +16,6 @@
 2. 安装最新版本的[Chrome浏览器](https://www.google.com/chrome/browser/thankyou.html?statcb=1&installdataindex=defaultbrowser#)
 3. 安装[pyhooked](https://github.com/ethanhs/pyhooked)库（不推荐pip install pyhooked，因为两份源码中函数不一样，虽然版本号相同= =!）
 4. 安装本程序所需依赖
-    
    >  ```pip install -r .\requirements.txt```
 5. [注册百度开发者账户并申请api_key](http://ai.baidu.com/tech/ocr/general)，并修改```.\config\config.conf```为自己的api_key
 
@@ -36,5 +35,5 @@ python .\main.py
 
 ## 参考项目
 
-- [wenda-helper](https://github.com/rrdssfgcs/wenda-helper)
 - [TopSup](https://github.com/Skyexu/TopSup)
+- [wenda-helper](https://github.com/rrdssfgcs/wenda-helper)
