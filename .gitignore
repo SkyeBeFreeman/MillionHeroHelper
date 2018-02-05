@@ -106,3 +106,4 @@ ENV/
 
 # picture
 *.png
+!*_test.png
